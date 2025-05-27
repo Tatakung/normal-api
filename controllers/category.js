@@ -22,6 +22,7 @@ exports.list = async(req,res)=>{
         res.json(category) ; 
 
         // joy
+        // sfclsdpsdfc'pl
         // res.send(category)
     }catch(err){
         console.log(err)
