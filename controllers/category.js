@@ -19,7 +19,9 @@ exports.list = async(req,res)=>{
     try{
         // code
         const category = await prisma.category.findMany()
-        res.json(category)
+        res.json(category) ; 
+
+        // joy
         // res.send(category)
     }catch(err){
         console.log(err)
