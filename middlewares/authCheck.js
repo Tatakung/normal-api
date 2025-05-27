@@ -8,9 +8,11 @@ exports.authCheck = async (req, res, next) => {
         if (!headerToken) {
             return res.status(401).json({ message: "No Token, Authorization" })
         }
+        
+        // มันมีtokenแน่นอน
         const token = headerToken.split(" ")[1]
         const decode = jwt.verify(token, process.env.SECRET)
-        req.user = decode
+        req.user = decode //เพิ่มข้อมูละข้าไป เพื่อรู้ว่า  คนที่เข้าสู่ระบบ ณ ตอนนี้คือใครหรอ
 
         const user = await prisma.user.findFirst({
             where: {
@@ -20,21 +22,20 @@ exports.authCheck = async (req, res, next) => {
         if (!user.enabled) {
             return res.status(400).json({ message: 'This account cannot access' })
         }
-
         next()
+        
     } catch (err) {
         console.log(err)
         res.status(500).json({ message: 'Token Invalid' })
     }
 }
-
-
 exports.adminCheck = async (req, res, next) => {
     try {
         const { email } = req.user
         const adminUser = await prisma.user.findFirst({
             where: { email: email }
         })
+        
         if (!adminUser || adminUser.role !== 'admin') {
             return res.status(403).json({ message: 'Acess Denied: Admin Only' })
         }

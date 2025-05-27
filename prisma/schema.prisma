@@ -14,7 +14,6 @@ datasource db {
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
-
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
@@ -97,7 +96,6 @@ model ProductOnCart {
   count     Int
   price     Float
 }
-
 model Image {
   id         Int      @id @default(autoincrement())
   asset_id   String

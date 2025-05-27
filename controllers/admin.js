@@ -24,7 +24,7 @@ exports.getOrderAdmin = async (req, res) => {
                         product: true
                     }
                 },
-                orderedBy: {
+                orderedผBy: {
                     select: {
                         id: true,
                         email: true,
