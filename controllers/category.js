@@ -22,7 +22,7 @@ exports.list = async(req,res)=>{
         res.json(category) ; 
     }catch(err){
         console.log(err)
-        res.status(500).json({ message : "Server error" })
+        res.status(500).json({ message : "Server error555555" })
     }
 }
 exports.remove = async(req,res)=>{
